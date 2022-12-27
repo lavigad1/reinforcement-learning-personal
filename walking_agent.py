@@ -122,3 +122,5 @@ for episode in range(num_episodes):
 print("\nFinal Q-table:")
 for grid_slice in q_table:
   print(grid_slice)
+  
+plt.plot(episode, exploration_rate)
