@@ -1,4 +1,5 @@
 import random
+import matplotlib.pyplot as plt
 
 # define the grid environment
 # 0 = empty space, 1 = wall, 2 = goal
