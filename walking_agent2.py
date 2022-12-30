@@ -1,28 +1,22 @@
 import gym
-import matplotlib.pyplot as plt
+env = gym.make("LunarLander-v2", render_mode="human")
+env.action_space.seed(42)
 
-env = gym.make("BipedalWalker-v3", render_mode = 'human')
+observation, info = env.reset(seed=42)
 
-obs = env.reset()
+def theta_omega_policy(observation):
+    theta, w = observation[2:4]
+    if abs(theta) < 0.03:
+        return 0 if w < 0 else 1
+    else:
+        return 0 if theta < 0 else 1
 
-obs_space = env.observation_space
-action_space = env.action_space
-# print("The observation space: {}".format(obs_space))
-# print("The action space: {}".format(action_space))
+for _ in range(1000):
+    env.action_space = theta_omega_policy(observation)
+    observation, reward, terminated, truncated, info = env.step(env.action_space)
 
-print("The initial observation is {}".format(obs))
+    if terminated or truncated:
+        observation, info = env.reset()
 
-for _ in range(100):
-    while True:
 
-        random_action = env.action_space.sample()
-
-        new_obs = env.step(random_action)
-        # print("The new observation is {}".format(new_obs))
-
-        env.render()
-
-        # contacts = env.
-
-        # if len(contacts > 0):
-        #     env.close()
+env.close()
