@@ -1,3 +1,4 @@
+#author: not me
 import numpy as np
 import pylab as pl
 import networkx as nx
