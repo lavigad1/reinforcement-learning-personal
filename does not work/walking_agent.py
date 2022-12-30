@@ -1,3 +1,4 @@
+#author: chatgpt
 import random
 import matplotlib.pyplot as plt
 
